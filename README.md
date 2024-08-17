@@ -1,2 +1,2 @@
 # OhMyTermuxScript
-A collection of scripts for 
+A collection of scripts for Termux
