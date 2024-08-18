@@ -146,7 +146,7 @@ delete_symlinks() {
 }
 
 # Mode suppression
-if [[ "$1" == "--delete" || "$1" == "-d" ]]; then
+if [[ "$1" == "--uninstall" || "$1" == "-u" ]]; then
     delete_symlinks
     exit 0
 fi
