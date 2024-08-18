@@ -9,7 +9,7 @@ From a clean install of Termux :
 ````
 pkg update -y && pkg install git -y
 git clone https://github.com/GiGiDKR/OhMyTermuxScript.git
-cd OhMyTermuxScript && chmod +x *.sh
+cd OhMyTermuxScript && chmod +x ./*.sh
 ````
 Then to run a script, type: 
 ````
