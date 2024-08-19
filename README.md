@@ -14,7 +14,7 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 Type `ls` to display the list of scripts, then type: 
 ```bash
 ./script_name.sh 
-``
+```
 
 
 ### Run a specific script 
@@ -38,5 +38,5 @@ Installation using gum:
 ```bash
 ./script_name.sh --gum (or -g)
 ```
-> [!NOTE]
+> [!TIP]
 > These settings can be combined. 
