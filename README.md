@@ -20,12 +20,12 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 
 ### Run a specific script 
 
-- [Electron Node.js](https://github.com/electron/electron)
+- [Electron](https://github.com/electron/electron) Node.js
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh
 ```
 
-- Create [Symbolic Link](https://en.wikipedia.org/wiki/Symbolic_link] to external user directories
+- Create [Symbolic Link](https://en.wikipedia.org/wiki/Symbolic_link) to external user directories
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh
 ```
