@@ -1,5 +1,6 @@
-#!/bin/bash
-# Mise à jour des paquets Termux...
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Mise à jour des paquets Termux
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
@@ -23,7 +24,6 @@ check_and_install_gum() {
         pkg install gum -y
     fi
 }
-
 
 # Fonction pour afficher la bannière avec une bordure et une largeur réduite
 show_banner() {
