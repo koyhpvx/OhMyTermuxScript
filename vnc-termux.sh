@@ -4,14 +4,19 @@
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
-# Variable pour déterminer si gum doit être utilisé
+# Variables pour déterminer si gum doit être utilisé et si une désinstallation doit être effectuée
 USE_GUM=false
+UNINSTALL=false
 
 # Vérification des arguments
 for arg in "$@"; do
     case $arg in
         --gum|-g)
             USE_GUM=true
+            shift
+            ;;
+        --uninstall|-u)
+            UNINSTALL=true
             shift
             ;;
     esac
