@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
-# Mise à jour des paquets Termux...
+# Mise à jour des paquets Termux
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
@@ -20,7 +20,7 @@ done
 # Fonction pour vérifier et installer gum
 check_and_install_gum() {
     if $USE_GUM && ! command -v gum &> /dev/null; then
-        echo "gum n'est pas installé. Installation en cours..."
+        echo "Installation de gum..."
         pkg install gum -y
     fi
 }
