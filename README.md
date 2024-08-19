@@ -33,12 +33,13 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 ## Additional parameters
 - Uninstall :
 ```bash
-./script_name.sh --uninstall
 ./script_name.sh -u
+./script_name.sh --uninstall
 ```
 - Installation using gum: 
 ```bash
-./script_name.sh --gum (or -g)
+./script_name.sh -g
+./script_name.sh --gum
 ```
 > [!TIP]
 > These settings can be combined. 
