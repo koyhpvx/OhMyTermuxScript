@@ -38,5 +38,5 @@ Installation using gum:
 ```bash
 ./script_name.sh --gum (or -g)
 ```
-[!NOTE]
+> [!NOTE]
 > These settings can be combined. 
