@@ -47,4 +47,5 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 ## To do
 - [X] Integrate the ability to use [gum](https://github.com/charmbracelet/gum) into scripts
 - [X] Integrate uninstallation with a run command parameter  
-- [ ] Update README.md to include script-specific execution commands 
+- [ ] Update README.md to include script-specific execution commands
+- [ ] Upload other scripts after testing 
