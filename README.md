@@ -25,7 +25,7 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh
 ```
 
-- Create user directories (Symlink) 
+- **Create Symlink to external user directories**
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh
 ```
