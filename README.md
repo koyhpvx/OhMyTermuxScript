@@ -2,7 +2,7 @@
 **A collection of scripts for [Termux](https://github.com/termux/termux-app)**
 
 > [!IMPORTANT]
-> To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with --gum or -g parameter added to the execution command. 
+> To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with `-g` or `--gum` parameter added to the execution command. 
 
 ### Complete installation 
 
