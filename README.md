@@ -1,8 +1,8 @@
 # OhMyTermuxScript
-A collection of scripts for Termux
+**A collection of scripts for Termux**
 
 > [!IMPORTANT]
-> To use a beautiful command line script execution interface [gum](https://github.com/charmbracelet/gum) can be used with --gum or -g parameter.
+> To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with --gum or -g parameter added to the execution command. 
 
 ### Complete installation 
 
