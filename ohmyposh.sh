@@ -4,14 +4,19 @@
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
-# Variable pour déterminer si gum doit être utilisé
+# Variables pour déterminer si gum doit être utilisé et si une désinstallation doit être effectuée
 USE_GUM=false
+UNINSTALL=false
 
 # Vérification des arguments
 for arg in "$@"; do
     case $arg in
         --gum|-g)
             USE_GUM=true
+            shift
+            ;;
+        --uninstall|-u)
+            UNINSTALL=true
             shift
             ;;
     esac
@@ -43,26 +48,23 @@ show_banner() {
     fi
 }
 
-# Appel de la fonction pour vérifier et installer gum
-check_and_install_gum
+# Fonction pour désinstaller Oh-My-Posh
+uninstall_oh_my_posh() {
+    show_banner
+    echo "Désinstallation de Oh-My-Posh..."
 
-# Afficher la bannière
-show_banner
+    # Supprimer Oh-My-Posh
+    pkg uninstall -y oh-my-posh
 
-# Utilisation de gum pour confirmer l'installation de Oh-My-Posh
-if $USE_GUM; then
-    gum confirm "Installer Oh-My-Posh ?" || { echo "Installation annulée."; exit 0; }
-fi
+    # Supprimer la ligne de configuration du fichier de configuration du shell
+    sed -i '/oh-my-posh init/d' "$CONFIG_FILE"
 
-# Installer Oh My Posh via pkg
-show_banner
-echo "Installation de Oh-My-Posh via pkg..."
-pkg install -y oh-my-posh
+    # Supprimer la police téléchargée
+    rm -f "$HOME/.termux/font.ttf"
 
-# Télécharger et installer la police DejaVu Sans Mono
-show_banner
-echo "Téléchargement de la police DejaVu Sans Mono..."
-curl -fLo "$HOME/.termux/font.ttf" --create-dirs https://raw.githubusercontent.com/termux/termux-styling/master/app/src/main/assets/fonts/DejaVu-Sans-Mono.ttf
+    echo "Désinstallation terminée."
+    exit 0
+}
 
 # Détection du shell
 SHELL_NAME=$(basename "$SHELL")
@@ -86,6 +88,32 @@ case $SHELL_NAME in
     exit 1
     ;;
 esac
+
+# Si le paramètre de désinstallation est fourni, exécuter la désinstallation et quitter
+if $UNINSTALL; then
+    uninstall_oh_my_posh
+fi
+
+# Appel de la fonction pour vérifier et installer gum
+check_and_install_gum
+
+# Afficher la bannière
+show_banner
+
+# Utilisation de gum pour confirmer l'installation de Oh-My-Posh
+if $USE_GUM; then
+    gum confirm "Installer Oh-My-Posh ?" || { echo "Installation annulée."; exit 0; }
+fi
+
+# Installer Oh My Posh via pkg
+show_banner
+echo "Installation de Oh-My-Posh via pkg..."
+pkg install -y oh-my-posh
+
+# Télécharger et installer la police DejaVu Sans Mono
+show_banner
+echo "Téléchargement de la police DejaVu Sans Mono..."
+curl -fLo "$HOME/.termux/font.ttf" --create-dirs https://raw.githubusercontent.com/termux/termux-styling/master/app/src/main/assets/fonts/DejaVu-Sans-Mono.ttf
 
 # Ligne à ajouter pour Oh My Posh
 LINE_TO_ADD='eval "$(oh-my-posh init bash --config /data/data/com.termux/files/usr/share/oh-my-posh/themes/jandedobbeleer.omp.json)"'
