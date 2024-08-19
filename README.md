@@ -6,13 +6,13 @@
 
 ### Complete installation 
 
-From a clean install of Termux, paste the following code 
+- From a clean install of Termux, paste the following code 
 ```bash
 pkg update -y && pkg install git -y
 git clone https://github.com/GiGiDKR/OhMyTermuxScript.git
 cd OhMyTermuxScript && chmod +x ./*.sh
 ```
-Type `ls` to display the list of scripts, then type
+- Type `ls` to display the list of scripts, then type
 ```bash
 ./script_name.sh 
 ```
