@@ -1,13 +1,17 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+# Mise à jour des paquets Termux...
+echo "Mise à jour des paquets Termux..."
+clear && pkg update -y
+
 # Variable pour déterminer si gum doit être utilisé
-USE_GUM=true
+USE_GUM=false
 
 # Vérification des arguments
 for arg in "$@"; do
     case $arg in
-        --nogum|-ng)
-            USE_GUM=false
+        --gum|-g)
+            USE_GUM=true
             shift
             ;;
     esac
@@ -129,10 +133,10 @@ else
         show_banner
         echo ""
         echo "Sélectionner la version de nodejs à installer :"
-	echo ""
+        echo ""
         echo "1) nodejs"
         echo "2) nodejs-lts"
-	echo ""
+        echo ""
         read -p "Choix : " version
         case $version in
             1)

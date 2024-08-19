@@ -2,7 +2,7 @@
 
 # Mise à jour des paquets Termux...
 echo "Mise à jour des paquets Termux..."
-pkg update -y
+clear && pkg update -y
 
 # Variable pour déterminer si gum doit être utilisé
 USE_GUM=false

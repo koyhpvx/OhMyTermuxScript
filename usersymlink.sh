@@ -1,13 +1,17 @@
 #!/bin/bash
 
+# Mise à jour des paquets Termux...
+echo "Mise à jour des paquets Termux..."
+clear && pkg update -y
+
 # Variable pour déterminer si gum doit être utilisé
-USE_GUM=true
+USE_GUM=false
 
 # Vérification des arguments
 for arg in "$@"; do
     case $arg in
-        --nogum|-ng)
-            USE_GUM=false
+        --gum|-g)
+            USE_GUM=true
             shift
             ;;
     esac
@@ -17,7 +21,7 @@ done
 check_and_install_gum() {
     if $USE_GUM && ! command -v gum &> /dev/null; then
         echo "gum n'est pas installé. Installation en cours..."
-        pkg update -y && pkg install gum -y
+        pkg install gum -y
     fi
 }
 
@@ -35,11 +39,11 @@ show_banner() {
             --padding "1 1" \
             "Oh-My-Termux" \
             "User Symlink" \
-	    ""
+            ""
     else
         echo -e "\e[1;34mOh-My-Termux\e[0m"
         echo -e "\e[1;35mUser Symlink\e[0m"
-	      echo
+        echo
     fi
 }
 
@@ -47,7 +51,7 @@ show_banner() {
 display_error_message() {
     clear
     show_banner
-    echo -e "\e[1;31mErreur de saisie. Veuillez recommencer.\e[0m"  # Texte en rouge gras
+    echo -e "\e[1;31mErreur de saisie. Veuillez recommencer.\e[0m" # Texte en rouge gras
     echo
 }
 
@@ -78,26 +82,24 @@ check_all_symlinks_created() {
     list_symlinks
     directories=("📂 Téléchargement" "🖼️ Images" "📸 Photos" "🎥 Vidéos" "🎵 Musique" "📄 Documents" "📁 Stockage Interne")
     created_symlinks=0
-
     for dir in "${directories[@]}"; do
         if [[ " ${symlinks[@]} " =~ " ${dir} " ]]; then
             ((created_symlinks++))
         fi
     done
-
     if [ $created_symlinks -eq ${#directories[@]} ]; then
         clear
         show_banner
         echo "Tous les liens symboliques ont été créés."
         echo
-	exit 0
+        exit 0
     fi
 }
 
 # Fonction pour gérer la suppression des liens symboliques
 delete_symlinks() {
     list_symlinks
-    symlinks+=("Tous les répertoires" "Terminer")  # Ajouter les options
+    symlinks+=("Tous les répertoires" "Terminer") # Ajouter les options
     while true; do
         if [ ${#symlinks[@]} -eq 2 ]; then
             clear
@@ -111,29 +113,29 @@ delete_symlinks() {
             selected_symlinks=$(printf "%s\n" "${symlinks[@]}" | gum choose --limit 1 --height=11)
         else
             for i in "${!symlinks[@]}"; do
-            echo "$((i+1))) ${symlinks[i]}"
+                echo "$((i+1))) ${symlinks[i]}"
             done
-	    echo
+            echo
             read -p "Entrez le numéro de votre choix : " choice
             selected_symlinks="${symlinks[$((choice-1))]}"
         fi
         if [ -n "$selected_symlinks" ]; then
             if [[ "$selected_symlinks" == "Terminer" ]]; then
                 clear
-		show_banner
-		echo "Fin de la suppression."
+                show_banner
+                echo "Fin de la suppression."
                 break
             elif [[ "$selected_symlinks" == "Tous les répertoires" ]]; then
                 clear
-		show_banner
-		echo "Tous les liens symboliques ont été supprimé."
+                show_banner
+                echo "Tous les liens symboliques ont été supprimé."
                 echo
-		for link in "${symlinks[@]}"; do
+                for link in "${symlinks[@]}"; do
                     if [[ "$link" != "Terminer" && "$link" != "Tous les répertoires" ]]; then
                         rm "$HOME/$link"
                     fi
                 done
-                exit 0  # Terminer le script après suppression
+                exit 0 # Terminer le script après suppression
             else
                 echo "Suppression du lien symbolique : $selected_symlinks"
                 rm "$HOME/$selected_symlinks"
@@ -167,31 +169,30 @@ display_directories() {
         fi
     done
     filtered_directories+=("Tous les répertoires" "Terminer")
-
     while true; do
         echo "Création de lien symbolique"
         echo
         if $USE_GUM; then
             selected_dirs=$(printf "%s\n" "${filtered_directories[@]}" | gum choose --limit 1 --height=11)
         else
-    	    for i in "${!filtered_directories[@]}"; do
+            for i in "${!filtered_directories[@]}"; do
                 echo "$((i+1))) ${filtered_directories[i]}"
             done
             echo
-	   read -p "Entrez le numéro de votre choix : " choice
+            read -p "Entrez le numéro de votre choix : " choice
             if ! [[ "$choice" =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt "${#filtered_directories[@]}" ]; then
                 display_error_message
                 continue
             fi
-             selected_dirs="${filtered_directories[$((choice-1))]}"
+            selected_dirs="${filtered_directories[$((choice-1))]}"
         fi
         if [ -n "$selected_dirs" ]; then
             if [[ "$selected_dirs" == "Terminer" ]]; then
                 clear
-		show_banner
-		echo "Script terminé !"
+                show_banner
+                echo "Script terminé !"
                 echo
-		exit 0
+                exit 0
             elif [[ "$selected_dirs" == "Tous les répertoires" ]]; then
                 for dir in "${directories[@]}"; do
                     if [[ ! " ${symlinks[@]} " =~ " ${dir} " ]]; then
@@ -218,10 +219,10 @@ display_directories() {
                                 ln -s "$HOME/storage/shared" "$HOME/📁 Stockage Interne"
                                 ;;
                         esac
-                        check_all_symlinks_created  # Vérification après chaque création
+                        check_all_symlinks_created # Vérification après chaque création
                     fi
                 done
-                exit 0  # Terminer le script après création
+                exit 0 # Terminer le script après création
             else
                 echo "Création de lien symbolique pour : $selected_dirs"
                 case $selected_dirs in
@@ -247,7 +248,7 @@ display_directories() {
                         ln -s "$HOME/storage/shared" "$HOME/📁 Stockage Interne"
                         ;;
                 esac
-                check_all_symlinks_created  # Vérification après chaque création
+                check_all_symlinks_created # Vérification après chaque création
                 filtered_directories=("${filtered_directories[@]/$selected_dirs}")
             fi
             clear
@@ -262,7 +263,6 @@ display_directories
 # Effacer le terminal et afficher la bannière avant de terminer
 clear
 show_banner
-
 if $USE_GUM; then
     clear
     show_banner

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Commencer par clear et mise à jour des paquets
+# Mise à jour des paquets Termux...
+echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
 # Fonction pour installer gum
@@ -13,11 +14,11 @@ install_gum() {
   fi
 }
 
-# Vérification des arguments pour ignorer l'installation de gum
-USE_GUM=true
+# Vérification des arguments pour déterminer l'utilisation de gum
+USE_GUM=false
 for arg in "$@"; do
-  if [[ "$arg" == "--nogum" || "$arg" == "-ng" ]]; then
-    USE_GUM=false
+  if [[ "$arg" == "--gum" || "$arg" == "-g" ]]; then
+    USE_GUM=true
     break
   fi
 done
