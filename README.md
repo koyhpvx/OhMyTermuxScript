@@ -11,7 +11,7 @@ pkg update -y && pkg install git -y
 git clone https://github.com/GiGiDKR/OhMyTermuxScript.git
 cd OhMyTermuxScript && chmod +x ./*.sh
 ````
-Then to run a script, type: 
+Then to run a script, type `ls` to display them then enter: : 
 ````
 ./script_name.sh 
 ````
