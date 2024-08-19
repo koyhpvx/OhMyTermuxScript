@@ -1,7 +1,7 @@
 # OhMyTermuxScript
 A collection of scripts for Termux
 
-By default [gum](https://github.com/charmbracelet/gum) is installed to provide a nice interface when running from the command line (can be disabled, see below "Additional script parameters") 
+To use a beautiful command line script execution interface [gum](https://github.com/charmbracelet/gum) can be used with --gum or -g parameter.
 
 ### Complete installation 
 
@@ -34,8 +34,8 @@ Uninstall :
 ````
 ./script_name.sh --uninstall (or -u)
 ````
-Installation without using gum: 
+Installation using gum: 
 ````
-./script_name.sh --nogum (or -ng)
+./script_name.sh --gum (or -g)
 ````
 These settings can be combined. 
