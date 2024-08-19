@@ -30,10 +30,11 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electro
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh
 ```
 
-## Additional script parameters
+## Additional parameters
 - Uninstall :
 ```bash
-./script_name.sh --uninstall (or -u)
+./script_name.sh --uninstall
+./script_name.sh -u
 ```
 - Installation using gum: 
 ```bash
