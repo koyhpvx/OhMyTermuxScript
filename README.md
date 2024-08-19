@@ -46,4 +46,4 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 
 ## To do
 - [X] Integrate the ability to use gum into scripts 
-- [ ]
+- [ ] Update README.md to include script-specific execution commands 
