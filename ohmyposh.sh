@@ -1,27 +1,29 @@
 #!/bin/bash
-
 # Mise à jour des paquets Termux...
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
-# Fonction pour installer gum
-install_gum() {
-  if ! command -v gum &> /dev/null; then
-    echo "Installation de gum..."
-    pkg install -y gum
-  else
-    echo "gum est déjà installé."
-  fi
+# Variable pour déterminer si gum doit être utilisé
+USE_GUM=false
+
+# Vérification des arguments
+for arg in "$@"; do
+    case $arg in
+        --gum|-g)
+            USE_GUM=true
+            shift
+            ;;
+    esac
+done
+
+# Fonction pour vérifier et installer gum
+check_and_install_gum() {
+    if $USE_GUM && ! command -v gum &> /dev/null; then
+        echo "Installation de gum..."
+        pkg install gum -y
+    fi
 }
 
-# Vérification des arguments pour déterminer l'utilisation de gum
-USE_GUM=false
-for arg in "$@"; do
-  if [[ "$arg" == "--gum" || "$arg" == "-g" ]]; then
-    USE_GUM=true
-    break
-  fi
-done
 
 # Fonction pour afficher la bannière avec une bordure et une largeur réduite
 show_banner() {
@@ -41,12 +43,10 @@ show_banner() {
     fi
 }
 
-# Installation de gum si nécessaire
-if $USE_GUM; then
-  install_gum
-fi
+# Appel de la fonction pour vérifier et installer gum
+check_and_install_gum
 
-# Affichage de la bannière
+# Afficher la bannière
 show_banner
 
 # Utilisation de gum pour confirmer l'installation de Oh-My-Posh
