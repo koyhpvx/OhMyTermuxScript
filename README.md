@@ -43,3 +43,7 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 ```
 > [!TIP]
 > These settings can be combined. 
+
+## To do
+- [X] Integrate the ability to use gum into scripts 
+- [ ]
