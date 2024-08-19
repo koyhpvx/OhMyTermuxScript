@@ -1,4 +1,4 @@
-# OhMyTermuxScript
+,# OhMyTermuxScript
 A collection of scripts for Termux
 
 To use a beautiful command line script execution interface [gum](https://github.com/charmbracelet/gum) can be used with --gum or -g parameter.
@@ -6,15 +6,15 @@ To use a beautiful command line script execution interface [gum](https://github.
 ### Complete installation 
 
 From a clean install of Termux :
-````
+```bash
 pkg update -y && pkg install git -y
 git clone https://github.com/GiGiDKR/OhMyTermuxScript.git
 cd OhMyTermuxScript && chmod +x ./*.sh
-````
+```
 Type `ls` to display the list of scripts, then type: 
 ````
 ./script_name.sh 
-````
+```
 
 
 ### Run a specific script 
