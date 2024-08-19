@@ -20,22 +20,22 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 
 ### Run a specific script 
 
-Electron Node.js
+- Electron Node.js
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh
 ```
 
-Create user directories (Symlink) 
+- Create user directories (Symlink) 
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh
 ```
 
 ## Additional script parameters
-Uninstall :
+- Uninstall :
 ```bash
 ./script_name.sh --uninstall (or -u)
 ```
-Installation using gum: 
+- Installation using gum: 
 ```bash
 ./script_name.sh --gum (or -g)
 ```
