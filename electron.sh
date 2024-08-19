@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Mise à jour des paquets Termux...
+# Mise à jour des paquets Termux
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
 
@@ -65,7 +65,7 @@ if [[ "$1" == "--uninstall" || "$1" == "-u" ]]; then
             echo "Désinstallation terminée !"
         fi
     else
-        read -p "Désinstaller Electron Nodejs ? (o/n) " confirm
+        read -p "Désinstaller Electron Node.js ? (o/n) " confirm
         if [[ $confirm =~ ^[Oo]$ ]]; then
             echo "Désinstallation d'Electron Node.js ..."
             pkg uninstall nodejs nodejs-lts -y
