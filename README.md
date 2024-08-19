@@ -45,5 +45,6 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 > These settings can be combined. 
 
 ## To do
-- [X] Integrate the ability to use gum into scripts 
+- [X] Integrate the ability to use [gum](https://github.com/charmbracelet/gum) into scripts
+- [X] Integrate the ability to uninstall with a runtime command parameter  
 - [ ] Update README.md to include script-specific execution commands 
