@@ -25,7 +25,7 @@ done
 # Fonction pour vérifier et installer gum
 check_and_install_gum() {
     if $USE_GUM && ! command -v gum &> /dev/null; then
-        echo "gum n'est pas installé. Installation en cours..."
+        echo "Installation de gum..."
         pkg install gum -y
     fi
 }
