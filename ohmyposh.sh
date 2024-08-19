@@ -30,7 +30,7 @@ check_and_install_gum() {
     fi
 }
 
-# Fonction pour afficher la bannière avec une bordure et une largeur réduite
+# Fonction pour afficher la bannière
 show_banner() {
     clear
     if $USE_GUM; then
@@ -62,6 +62,9 @@ uninstall_oh_my_posh() {
     # Supprimer la police téléchargée
     rm -f "$HOME/.termux/font.ttf"
 
+    # Recharger le fichier de configuration du shell
+    eval "$EXEC_CMD"
+
     echo "Désinstallation terminée."
     exit 0
 }
@@ -73,15 +76,15 @@ SHELL_NAME=$(basename "$SHELL")
 case $SHELL_NAME in
   bash)
     CONFIG_FILE="$HOME/.bashrc"
-    EXEC_CMD="exec bash"
+    EXEC_CMD="source ~/.bashrc"
     ;;
   zsh)
     CONFIG_FILE="$HOME/.zshrc"
-    EXEC_CMD="exec zsh"
+    EXEC_CMD="source ~/.zshrc"
     ;;
   fish)
     CONFIG_FILE="$HOME/.config/fish/config.fish"
-    EXEC_CMD="exec fish"
+    EXEC_CMD="source ~/.config/fish/config.fish"
     ;;
   *)
     echo "Shell non supporté : $SHELL_NAME"
@@ -105,10 +108,11 @@ if $USE_GUM; then
     gum confirm "Installer Oh-My-Posh ?" || { echo "Installation annulée."; exit 0; }
 fi
 
-# Installer Oh My Posh via pkg
-show_banner
-echo "Installation de Oh-My-Posh via pkg..."
-pkg install -y oh-my-posh
+# Vérification de la présence de Oh-My-Posh
+if ! command -v oh-my-posh &> /dev/null; then
+    echo "Installation de Oh-My-Posh via pkg..."
+    pkg install -y oh-my-posh
+fi
 
 # Télécharger et installer la police DejaVu Sans Mono
 show_banner
@@ -132,6 +136,6 @@ termux-reload-settings
 
 clear
 # Exécuter la commande exec appropriée pour recharger le shell
-eval $EXEC_CMD
+eval "$EXEC_CMD"
 
 echo "Installation et configuration terminées."
