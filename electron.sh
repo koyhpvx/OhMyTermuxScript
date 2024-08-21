@@ -32,6 +32,7 @@ show_banner() {
         gum style \
             --foreground 212 \
             --border-foreground 212 \
+            --border double \
             --align center \
             --width 40 \
             --margin "1 2" \
