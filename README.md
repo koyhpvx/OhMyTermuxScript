@@ -22,12 +22,12 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 
 - [Electron](https://github.com/electron/electron) Node.js
 ```bash
-curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh
+curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh --gum
 ```
 
 - Create [Symbolic Link](https://en.wikipedia.org/wiki/Symbolic_link) to external user directories
 ```bash
-curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh
+curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh --gum
 ```
 
 ## Additional parameters
