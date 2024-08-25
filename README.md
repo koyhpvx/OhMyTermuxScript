@@ -1,10 +1,15 @@
-# OhMyTermuxScript
-**A collection of scripts for [Termux](https://github.com/termux/termux-app)**
+# OhMyTermuxScript 🧊
+**A collection of scripts for [Termux](https://github.com/termux/termux-app).**
+
+> [!WARNING]
+> This program is in Alpha version (see [Update log](https://github.com/GiGiDKR/OhMyTermuxScript/edit/main/README.md#update-log) for more information.
+
+&nbsp;
+
+### 🧊 Complete installation 
 
 > [!IMPORTANT]
 > To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with `-g` or `--gum` parameter added to the execution command. 
-
-### Complete installation 
 
 - From a clean install of Termux, paste the following code 
 ```bash
@@ -17,8 +22,9 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 ./script_name.sh 
 ```
 
+&nbsp;
 
-### Run a specific script 
+### 🧊 Run a specific script 
 
 - [Electron](https://github.com/electron/electron) Node.js
 ```bash
@@ -30,7 +36,7 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electro
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh --gum
 ```
 
-## Additional parameters
+## 🧊 Additional parameters
 - Uninstall
 ```bash
 ./script_name.sh -u
@@ -42,10 +48,14 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 ./script_name.sh --gum
 ```
 > [!TIP]
-> These settings can be combined. 
+> These settings can be combined.
 
-## To do
+## 💻 Update log
+- Version 0.1.0 : Initial upload
+- Version 0.2.0 : [OhMyTermux](https://github.com/GiGiDKR/OhMyTermux) integration
+
+## ⏺️ To do
 - [X] Integrate the ability to use [gum](https://github.com/charmbracelet/gum) into scripts
 - [X] Integrate uninstallation with a run command parameter  
-- [ ] Update README.md to include script-specific execution commands
-- [ ] Upload other scripts after testing 
+- [ ] Update README.md to include script-specific commands
+- [ ] Upload other scripts after testing
