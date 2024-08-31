@@ -1,4 +1,4 @@
-# OhMyTermuxScript 🧊
+# OhMyTermuxScript ⏯️
 **A collection of scripts for [Termux](https://github.com/termux/termux-app).**
 
 > [!WARNING]
@@ -6,7 +6,7 @@
 
 &nbsp;
 
-### 🧊 Complete installation 
+### ⏯️ Complete installation 
 
 > [!IMPORTANT]
 > To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with `-g` or `--gum` parameter added to the execution command. 
@@ -24,7 +24,7 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 
 &nbsp;
 
-### 🧊 Run a specific script 
+### ⏯️ Run a specific script 
 
 - [Electron](https://github.com/electron/electron) Node.js
 ```bash
@@ -54,7 +54,7 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 - Version 0.1.0 : Initial upload
 - Version 0.2.0 : [OhMyTermux](https://github.com/GiGiDKR/OhMyTermux) integration
 
-## ⏺️ To do
+## 📖 To do
 - [X] Integrate the ability to use [gum](https://github.com/charmbracelet/gum) into scripts
 - [X] Integrate uninstallation with a run command parameter  
 - [ ] Update README.md to include script-specific commands
