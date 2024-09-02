@@ -15,7 +15,8 @@
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh --gum
 ```
-*Remove the `--gum` parameter to run the script without*
+> [!NOTE]
+> Remove the `--gum` parameter to run the script without
 
 
 #### Manual installation 
