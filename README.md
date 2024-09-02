@@ -41,7 +41,7 @@ cd OhMyTermuxScript && chmod +x ./*.sh
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/electron.sh -o electron.sh && chmod +x electron.sh && ./electron.sh --gum
 ```
 
-- Create [Symbolic Link](https://en.wikipedia.org/wiki/Symbolic_link) to external user directories
+- [Symbolic Link](https://en.wikipedia.org/wiki/Symbolic_link) to external user directories
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersymlink.sh -o usersymlink.sh && chmod +x usersymlink.sh && ./usersymlink.sh --gum
 ```
@@ -63,9 +63,11 @@ curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/usersym
 ## 💻 Update log
 - Version 0.1.0 : Initial upload
 - Version 0.2.0 : [OhMyTermux](https://github.com/GiGiDKR/OhMyTermux) integration
+- Version 1.0.0 : Added an installation and execution script
 
 ## 📖 To do
 - [X] Integrate the ability to use [gum](https://github.com/charmbracelet/gum) into scripts
-- [X] Integrate uninstallation with a run command parameter  
+- [X] Integrate uninstallation with a run command parameter 
 - [ ] Update README.md to include script-specific commands
-- [ ] Upload other scripts after testing
+- [ ] Upload other scripts
+- [X] Creating an installation and execution script
