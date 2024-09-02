@@ -11,10 +11,12 @@
 > [!IMPORTANT]
 > To use a beautiful command line script execution interface, [gum](https://github.com/charmbracelet/gum) can be used with `-g` or `--gum` parameter added to the execution command. 
 
-#### Installation and execution script (with --gum argument)
+#### Installation and execution script
 ```bash
 curl -sL https://raw.githubusercontent.com/GiGiDKR/OhMyTermuxScript/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh --gum
 ```
+*Remove the `--gum` parameter to run the script without*
+
 
 #### Manual installation 
 
