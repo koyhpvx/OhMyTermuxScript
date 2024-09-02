@@ -122,13 +122,19 @@ execute_script() {
   fi
 }
 
-if $USE_GUM; then
-  if gum confirm --prompt.foreground="33" --selected.background="33" "        Exécuter un script ?"; then
-    execute_script
+while true; do
+  if $USE_GUM; then
+    if gum confirm --prompt.foreground="33" --selected.background="33" "        Exécuter un script ?"; then
+      execute_script
+    else
+      break
+    fi
+  else
+    read -p "        Exécuter un script ? (o/n) " choice
+    if [ "$choice" = "o" ]; then
+      execute_script
+    else
+      break
+    fi
   fi
-else
-  read -p "        Exécuter un script ? (o/n) " choice
-  if [ "$choice" = "o" ]; then
-    execute_script
-  fi
-fi
+done
