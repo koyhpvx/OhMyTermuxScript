@@ -101,13 +101,13 @@ execute_script() {
       echo -e "\e[38;5;33m            Sélection de script\n\e[0m"
 
       if $USE_GUM; then
-        script_choice=$(gum choose --selected.foreground="33" --header.foreground="33" --cursor.foreground="33" "${script_names[@]}" "> Quitter")
-        if [ "$script_choice" == "> Quitter" ]; then
+        script_choice=$(gum choose --selected.foreground="33" --header.foreground="33" --cursor.foreground="33" "${script_names[@]}" "QUITTER")
+        if [ "$script_choice" == "> QUITTER" ]; then
           clear
           return
         fi
       else
-        select script_choice in "${script_names[@]}" "Quitter"; do
+        select script_choice in "${script_names[@]}" "QUITTER"; do
           if [[ $REPLY -eq $(( ${#script_names[@]} + 1 )) ]]; then
             clear
             return
@@ -134,11 +134,11 @@ execute_script() {
 }
 
 if $USE_GUM; then
-  if gum confirm --prompt.foreground="33" --selected.background="33" "      Exécuter un script ?"; then
+  if gum confirm --prompt.foreground="33" --selected.background="33" "Exécuter un script ?"; then
     execute_script
   fi
 else
-  read -p "    Exécuter un script ? (o/n) " choice
+  read -p "     Exécuter un script ? (o/n) " choice
   if [ "$choice" = "o" ]; then
     execute_script
   fi
