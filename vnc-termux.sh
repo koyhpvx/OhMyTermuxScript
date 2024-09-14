@@ -1,5 +1,11 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+# Vérifier si le script est exécuté dans Termux
+if [ ! -d /data/data/com.termux ]; then
+    echo "Ce script doit être exécuté dans Termux."
+    exit 1
+fi
+
 # Mise à jour des paquets Termux
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
@@ -52,6 +58,21 @@ show_banner() {
     fi
 }
 
+install_package() {
+    local package=$1
+    if $USE_GUM; then
+        if ! gum spin --spinner dot --title "Installation de $package ..." -- pkg install $package -y; then
+            echo "Erreur lors de l'installation de $package"
+            exit 1
+        fi
+    else
+        if ! pkg install $package -y; then
+            echo "Erreur lors de l'installation de $package"
+            exit 1
+        fi
+    fi
+}
+
 # Fonction pour désinstaller les modifications
 uninstall_changes() {
     echo "Désinstallation de VNC et suppression des modifications..."
@@ -72,18 +93,18 @@ SHELL_NAME=$(basename $SHELL)
 
 # Définir le fichier de configuration en fonction du shell
 case $SHELL_NAME in
-  bash)
-    CONFIG_FILE="$HOME/.bashrc"
+    bash)
+        CONFIG_FILE="$HOME/.bashrc"
     ;;
-  zsh)
-    CONFIG_FILE="$HOME/.zshrc"
+    zsh)
+        CONFIG_FILE="$HOME/.zshrc"
     ;;
-  fish)
-    CONFIG_FILE="$HOME/.config/fish/config.fish"
+    fish)
+        CONFIG_FILE="$HOME/.config/fish/config.fish"
     ;;
-  *)
-    echo "Shell non supporté : $SHELL_NAME"
-    exit 1
+    *)
+        echo "Shell non supporté : $SHELL_NAME"
+        exit 1
     ;;
 esac
 
@@ -99,15 +120,14 @@ check_and_install_gum
 # Afficher la bannière
 show_banner
 
-# Installer le package vnc avec un spinner si gum est utilisé
-if $USE_GUM; then
-    gum spin --spinner dot --title "Installation de VNC ..." -- pkg install tigervnc -y
-else
-    pkg install tigervnc -y
-fi
+# Installer le package vnc
+install_package tigervnc
 
 # Exécuter vnc pour la première fois afin que l'utilisateur puisse définir un mot de passe
-vncserver && vncserver -kill :1
+if ! vncserver && vncserver -kill :1; then
+    echo "Erreur lors de la configuration initiale de VNC"
+    exit 1
+fi
 
 # Ajouter un alias pour démarrer le serveur vnc
 echo 'alias startvnc="vncserver -xstartup ../usr/bin/startxfce4 -listen tcp :1 && rm -r /data/data/com.termux/files/usr/tmp && mkdir /data/data/com.termux/files/usr/tmp"' >> $CONFIG_FILE
@@ -117,7 +137,7 @@ echo 'alias stopvnc="vncserver -kill :1"' >> $CONFIG_FILE
 
 # Recharger le fichier de configuration pour rendre les alias disponibles dans la session actuelle
 if [ "$SHELL_NAME" = "fish" ]; then
-  source $CONFIG_FILE
+    source $CONFIG_FILE
 else
-  . $CONFIG_FILE
+    . $CONFIG_FILE
 fi

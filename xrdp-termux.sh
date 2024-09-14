@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Vérifier si le script est exécuté dans Termux
+if [ ! -d "/data/data/com.termux" ]; then
+    echo "Ce script doit être exécuté dans Termux."
+    exit 1
+fi
+
 # Mise à jour des paquets Termux...
 echo "Mise à jour des paquets Termux..."
 clear && pkg update -y
@@ -72,18 +78,18 @@ SHELL_NAME=$(basename $SHELL)
 
 # Définir le fichier de configuration en fonction du shell
 case $SHELL_NAME in
-  bash)
-    CONFIG_FILE="$HOME/.bashrc"
+    bash)
+        CONFIG_FILE="$HOME/.bashrc"
     ;;
-  zsh)
-    CONFIG_FILE="$HOME/.zshrc"
+    zsh)
+        CONFIG_FILE="$HOME/.zshrc"
     ;;
-  fish)
-    CONFIG_FILE="$HOME/.config/fish/config.fish"
+    fish)
+        CONFIG_FILE="$HOME/.config/fish/config.fish"
     ;;
-  *)
-    echo "Shell non supporté : $SHELL_NAME"
-    exit 1
+    *)
+        echo "Shell non supporté : $SHELL_NAME"
+        exit 1
     ;;
 esac
 
@@ -101,9 +107,15 @@ show_banner
 
 # Installer xRDP avec un spinner si gum est utilisé
 if $USE_GUM; then
-    gum spin --spinner dot --title "Installation de xRDP ..." -- pkg install xrdp -y
+    gum spin --spinner dot --title "Installation de xRDP ..." -- pkg install xrdp xfce4 -y
 else
-    pkg install xrdp -y
+    pkg install xrdp xfce4 -y
+fi
+
+# Vérifier si xfce4 est installé
+if ! command -v startxfce4 &> /dev/null; then
+    echo "Erreur : xfce4 n'a pas pu être installé. Veuillez l'installer manuellement."
+    exit 1
 fi
 
 # Configurer xRDP
@@ -115,13 +127,13 @@ echo 'alias startxrdp="xrdp && vncserver -xstartup /usr/bin/startxfce4 -listen t
 
 # Recharger le fichier de configuration pour rendre les alias disponibles dans la session actuelle
 if [ "$SHELL_NAME" = "fish" ]; then
-  source $CONFIG_FILE
+    source $CONFIG_FILE
 else
-  . $CONFIG_FILE
+    . $CONFIG_FILE
 fi
 
 # Configurer le serveur VNC et le mot de passe
 xrdp && vncserver -xstartup /usr/bin/startxfce4 -listen tcp :1 && stopxrdp
 
 # Informer l'utilisateur que l'installation est terminée
-clear && echo "XRDP est installé. Pour l'utiliser, tapez startxrdp && ifconfig et connectez-vous à l'IP locale WLAN0 avec votre PC. Vous pouvez fermer xrdp en tapant stopxrdp."
+clear && echo "XRDP est installé. Pour l'utiliser, tapez \"startxrdp && ifconfig\" et connectez-vous à l'IP locale WLAN0 avec votre PC. Vous pouvez fermer xrdp en tapant \"stopxrdp\"."
